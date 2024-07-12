@@ -27,8 +27,9 @@ public:
 	std::ostream& Write(std::ostream& = std::cout) const;
 
 private:
-	dll_node_t<T>* head_, tail_;
 	int size_;
+	dll_node_t<T>* head_;
+	dll_node_t<T>* tail_;
 };
 
 template <class T>
@@ -72,7 +73,7 @@ void dll_t<T>::PushBack(dll_node_t<T>* node)
 		node->SetPrev(tail_);
 		tail_ = node;
 	}
-	size++;
+	size_++;
 }
 
 template <class T>
@@ -90,7 +91,7 @@ void dll_t<T>::PushFront(dll_node_t<T>* node)
 		node->SetNext(head_);
 		head_ = node;
 	}
-	size++;
+	size_++;
 }
 
 template <class T>
@@ -103,7 +104,7 @@ dll_node_t<T>* dll_t<T>::PopBack(void)
   if(tail_ != NULL) tail_->SetNext(NULL);
   else head_ = NULL;
 
-	size--;
+	size_--;
   aux->SetNext(NULL);
   aux->SetPrev(NULL);
   return aux;
@@ -119,7 +120,7 @@ dll_node_t<T>* dll_t<T>::PopFront(void)
   if(head_ != NULL) head_->SetPrev(NULL);
   else tail_ = NULL;
 
-	size--;
+	size_--;
   aux->SetNext(NULL);
   aux->SetPrev(NULL);
   return aux;
@@ -135,7 +136,7 @@ dll_node_t<T>* dll_t<T>::Erase(dll_node_t<T>* node)
 	if(node->GetNext() != NULL) node->GetNext()->SetPrev(node->GetPrev());
 	else tail_ = node->GetPrev();
 
-	size--;
+	size_--;
 	node->SetNext(NULL);
 	node->SetPrev(NULL);
 	return node;

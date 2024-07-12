@@ -11,16 +11,17 @@ public:
 
 	dll_node_t<T>* GetPrev(void) const { return prev_; }
 	dll_node_t<T>* GetNext(void) const { return next_; }
-	T& GetData(void) const { return data_; }
-	void SetPrev(const dll_node_t<T>* prev) { prev_ = prev; }
-	void SetNext(const dll_node_t<T>* next) { next_ = next; }
-	void SetData(const T* data) { data_ = data; }
+	const T& GetData(void) const { return data_; }
+	void SetPrev(dll_node_t<T>* prev) { prev_ = prev; }
+	void SetNext(dll_node_t<T>* next) { next_ = next; }
+	void SetData(const T& data) { data_ = data; }
 
 	std::ostream& Write(std::ostream& = std::cout) const;
 
 private:
 	T data_;
-	dll_node_t<T>* prev_, next_;
+	dll_node_t<T>* prev_;
+	dll_node_t<T>* next_;
 };
 
 template <class T>
